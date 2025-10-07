@@ -72,13 +72,6 @@
 | **정확도(Accuracy)** |  |  | **0.88** |
 
 
-### 🧠 (1) Colab에서 바로 실행
-
-아래 버튼을 클릭하면 Colab에서 모델을 바로 불러올 수 있습니다.  
-(로그인 불필요, GPU 선택 시 더 빠름)
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Junbrobro/KcBERT-MedicalSentiment-Classification/blob/main/scripts/inference_example.ipynb)
-
 ---
 
 
