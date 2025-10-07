@@ -70,3 +70,8 @@
 | 분노 | 0.90 | 0.86 | 0.88 |
 | 혐오 | 0.87 | 0.89 | 0.88 |
 | **정확도(Accuracy)** |  |  | **0.88** |
+
+
+### Hugging Face 모델
+- **의사 감성 분류 모델:** [JunHyeongdd/doctor_emotion_ko](https://huggingface.co/JunHyeongdd/doctor_emotion_ko)
+- **의사 대상 분류 모델:** [JunHyeongdd/doctor_target_ko](https://huggingface.co/JunHyeongdd/doctor_target_ko)
