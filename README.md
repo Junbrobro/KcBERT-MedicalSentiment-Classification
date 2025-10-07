@@ -83,5 +83,5 @@
 
 
 ### Hugging Face 모델
-- **의사 감성 분류 모델:** [JunHyeongdd/doctor_emotion_ko](https://huggingface.co/JunHyeongdd/doctor_emotion_ko)
-- **의사 대상 분류 모델:** [JunHyeongdd/doctor_target_ko](https://huggingface.co/JunHyeongdd/doctor_target_ko)
+- **의사 감성 분류 모델:** [[JunHyeongdd/doctor_emotion_ko](https://huggingface.co/JunHyeongdd/doctorsentimentmodel)]
+- **의사 대상 분류 모델:** [JunHyeongdd/doctor_target_ko]([(https://huggingface.co/JunHyeongdd/doctortargetmodel)])
