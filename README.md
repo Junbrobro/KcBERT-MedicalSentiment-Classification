@@ -69,6 +69,12 @@
 | 혐오 | 0.87 | 0.89 | 0.88 |
 | **정확도(Accuracy)** |  |  | **0.88** |
 
+
+
+### Hugging Face 모델
+- **의사 대상 분류 모델:** [[JunHyeongdd/doctor_target_ko](https://huggingface.co/JunHyeongdd/doctortargetmodel)]
+- **의사 감성 분류 모델:** [[JunHyeongdd/doctor_emotion_ko](https://huggingface.co/JunHyeongdd/doctorsentimentmodel)]
+
 ---
 
 ## 4. 설치 및 실행 방법
@@ -125,9 +131,3 @@ else:
     print(f"\n[입력 댓글] {comment}")
     print(f"▶ 타겟 분류 결과: {target_label} ({target_score:.3f})")
     print("▶ 감정 분류는 생략되었습니다. (비의사 관련 댓글)")
-
-
-
-### Hugging Face 모델
-- **의사 대상 분류 모델:** [[JunHyeongdd/doctor_target_ko](https://huggingface.co/JunHyeongdd/doctortargetmodel)]
-- **의사 감성 분류 모델:** [[JunHyeongdd/doctor_emotion_ko](https://huggingface.co/JunHyeongdd/doctorsentimentmodel)]
