@@ -92,13 +92,13 @@ pip install torch transformers
 ---
 from transformers import pipeline
 
-# 의사 감정 분류 모델 (Emotion Classification)
-pipe = pipeline("text-classification", model="JunHyeongdd/doctorsentimentmodel")
-print(pipe("의사들이 너무 이기적이다."))
-
-# 의사 타겟 분류 모델 (Target Classification)
+# 의사 대상 분류 모델 
 pipe_target = pipeline("text-classification", model="JunHyeongdd/doctortargetmodel")
-print(pipe_target("의사들은 돈만 아는 사람들이다."))
+print(pipe_target("의사들은 돈만 아는 사람들이다.")) #예시문장
+
+# 의사 감정 분류 모델 
+pipe = pipeline("text-classification", model="JunHyeongdd/doctorsentimentmodel")
+print(pipe("의사들이 너무 이기적이다.")) # 예시문장
 
 
 ### Hugging Face 모델
