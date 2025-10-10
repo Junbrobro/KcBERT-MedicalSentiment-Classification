@@ -126,7 +126,7 @@ else:
     print(f"▶ 타겟 분류 결과: {target_label} ({target_score:.3f})")
     print("▶ 감정 분류는 생략되었습니다. (비의사 관련 댓글)")
 
----
+
 
 ### Hugging Face 모델
 - **의사 대상 분류 모델:** [[JunHyeongdd/doctor_target_ko](https://huggingface.co/JunHyeongdd/doctortargetmodel)]
