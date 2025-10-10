@@ -97,6 +97,7 @@ print(pipe_target("의사들은 돈만 아는 사람들이다."))
 pipe_sentiment = pipeline_sentiment("text-classification", model="JunHyeongdd/doctorsentimentmodel")
 print(pipe("의사들이 너무 이기적이다."))
 
+
 ---
 
 ### Hugging Face 모델
