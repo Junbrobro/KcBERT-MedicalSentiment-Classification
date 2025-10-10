@@ -73,14 +73,16 @@
 
 ## 4. 설치 및 실행 방법
 
-### 환경 설정
-# 의사 댓글 분류 파이프라인
+```python
+# ==========================================
+# 🩺 의사 댓글 분류 파이프라인
+# ==========================================
 from transformers import pipeline
 
-# 1️⃣ 의사 대상 분류 모델 
+# 1️⃣ 의사 대상 분류 모델 (Target Classification)
 pipe_target = pipeline("text-classification", model="JunHyeongdd/doctortargetmodel")
 
-# 2️⃣ 의사 감성 분류 모델 
+# 2️⃣ 의사 감성 분류 모델 (Emotion Classification)
 pipe_sentiment = pipeline("text-classification", model="JunHyeongdd/doctorsentimentmodel")
 
 # 결과 해석용 라벨 매핑
@@ -95,15 +97,21 @@ sentiment_labels = {
     "LABEL_2": "혐오"
 }
 
+# ------------------------------------------
 # 🔹 댓글 입력
+# ------------------------------------------
 comment = input("댓글을 입력하세요: ")
 
+# ------------------------------------------
 # 🔹 1단계: 타겟 분류 실행
+# ------------------------------------------
 result_target = pipe_target(comment)[0]
 target_label = target_labels[result_target['label']]
 target_score = result_target['score']
 
-# 🔹 2단계: 감정 분류 실행 
+# ------------------------------------------
+# 🔹 2단계: 감정 분류 실행 (의사 타겟일 때만)
+# ------------------------------------------
 if target_label == "의사":
     result_sentiment = pipe_sentiment(comment)[0]
     sentiment_label = sentiment_labels[result_sentiment['label']]
@@ -117,7 +125,6 @@ else:
     print(f"\n[입력 댓글] {comment}")
     print(f"▶ 타겟 분류 결과: {target_label} ({target_score:.3f})")
     print("▶ 감정 분류는 생략되었습니다. (비의사 관련 댓글)")
-
 
 ---
 
