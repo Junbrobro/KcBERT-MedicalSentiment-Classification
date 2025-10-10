@@ -74,28 +74,49 @@
 ## 4. 설치 및 실행 방법
 
 ### 환경 설정
-Python 3.9 이상 환경을 권장합니다.  
-(가상환경 사용 시 아래 명령으로 활성화하세요)
-
-```bash
-# (선택) 가상환경 생성
-python -m venv venv
-source venv/bin/activate  # Mac/Linux
-venv\Scripts\activate     # Windows
-
-# 필수 패키지 설치
-pip install torch transformers
-
-#라이브러리 호출 
+# 의사 댓글 분류 파이프라인
 from transformers import pipeline
 
-# 1️⃣ 의사 대상 분류 모델 (Target Classification)
+# 1️⃣ 의사 대상 분류 모델 
 pipe_target = pipeline("text-classification", model="JunHyeongdd/doctortargetmodel")
-print(pipe_target("의사들은 돈만 아는 사람들이다."))
 
-# 2️⃣ 의사 감성 분류 모델 (Emotion Classification)
-pipe_sentiment = pipeline_sentiment("text-classification", model="JunHyeongdd/doctorsentimentmodel")
-print(pipe("의사들이 너무 이기적이다."))
+# 2️⃣ 의사 감성 분류 모델 
+pipe_sentiment = pipeline("text-classification", model="JunHyeongdd/doctorsentimentmodel")
+
+# 결과 해석용 라벨 매핑
+target_labels = {
+    "LABEL_0": "비의사",
+    "LABEL_1": "의사"
+}
+
+sentiment_labels = {
+    "LABEL_0": "중립",
+    "LABEL_1": "분노",
+    "LABEL_2": "혐오"
+}
+
+# 🔹 댓글 입력
+comment = input("댓글을 입력하세요: ")
+
+# 🔹 1단계: 타겟 분류 실행
+result_target = pipe_target(comment)[0]
+target_label = target_labels[result_target['label']]
+target_score = result_target['score']
+
+# 🔹 2단계: 감정 분류 실행 
+if target_label == "의사":
+    result_sentiment = pipe_sentiment(comment)[0]
+    sentiment_label = sentiment_labels[result_sentiment['label']]
+    sentiment_score = result_sentiment['score']
+
+    print(f"\n[입력 댓글] {comment}")
+    print(f"▶ 타겟 분류 결과: {target_label} ({target_score:.3f})")
+    print(f"▶ 감정 분류 결과: {sentiment_label} ({sentiment_score:.3f})")
+
+else:
+    print(f"\n[입력 댓글] {comment}")
+    print(f"▶ 타겟 분류 결과: {target_label} ({target_score:.3f})")
+    print("▶ 감정 분류는 생략되었습니다. (비의사 관련 댓글)")
 
 
 ---
