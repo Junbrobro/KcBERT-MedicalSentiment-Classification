@@ -74,6 +74,32 @@
 
 ---
 
+## 4. 설치 및 실행 방법
+
+### 환경 설정
+Python 3.9 이상 환경을 권장합니다.  
+(가상환경 사용 시 아래 명령으로 활성화하세요)
+
+```bash
+# (선택) 가상환경 생성
+python -m venv venv
+source venv/bin/activate  # Mac/Linux
+venv\Scripts\activate     # Windows
+
+# 필수 패키지 설치
+pip install torch transformers
+
+---
+from transformers import pipeline
+
+# 의사 감정 분류 모델 (Emotion Classification)
+pipe = pipeline("text-classification", model="JunHyeongdd/doctorsentimentmodel")
+print(pipe("의사들이 너무 이기적이다."))
+
+# 의사 타겟 분류 모델 (Target Classification)
+pipe_target = pipeline("text-classification", model="JunHyeongdd/doctortargetmodel")
+print(pipe_target("의사들은 돈만 아는 사람들이다."))
+
 
 ### Hugging Face 모델
 - **의사 감성 분류 모델:** [[JunHyeongdd/doctor_emotion_ko](https://huggingface.co/JunHyeongdd/doctorsentimentmodel)]
