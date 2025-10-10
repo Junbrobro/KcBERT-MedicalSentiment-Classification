@@ -107,14 +107,14 @@ sentiment_labels = {
 comment = input("댓글을 입력하세요: ")
 
 # ------------------------------------------
-# 🔹 1단계: 타겟 분류 실행
+# 🔹 1단계: 의사 대상 분류 실행
 # ------------------------------------------
 result_target = pipe_target(comment)[0]
 target_label = target_labels[result_target['label']]
 target_score = result_target['score']
 
 # ------------------------------------------
-# 🔹 2단계: 감정 분류 실행 (의사 타겟일 때만)
+# 🔹 2단계: 의사 감성 분류 실행 (의사 대상일 때만)
 # ------------------------------------------
 if target_label == "의사":
     result_sentiment = pipe_sentiment(comment)[0]
@@ -122,10 +122,10 @@ if target_label == "의사":
     sentiment_score = result_sentiment['score']
 
     print(f"\n[입력 댓글] {comment}")
-    print(f"▶ 타겟 분류 결과: {target_label} ({target_score:.3f})")
+    print(f"▶ 대상 분류 결과: {target_label} ({target_score:.3f})")
     print(f"▶ 감정 분류 결과: {sentiment_label} ({sentiment_score:.3f})")
 
 else:
     print(f"\n[입력 댓글] {comment}")
-    print(f"▶ 타겟 분류 결과: {target_label} ({target_score:.3f})")
+    print(f"▶ 대상 분류 결과: {target_label} ({target_score:.3f})")
     print("▶ 감정 분류는 생략되었습니다. (비의사 관련 댓글)")
