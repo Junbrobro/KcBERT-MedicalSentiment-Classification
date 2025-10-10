@@ -89,7 +89,7 @@ venv\Scripts\activate     # Windows
 # 필수 패키지 설치
 pip install torch transformers
 
----
+#라이브러리 호출 
 from transformers import pipeline
 
 # 의사 대상 분류 모델 
@@ -97,10 +97,10 @@ pipe_target = pipeline("text-classification", model="JunHyeongdd/doctortargetmod
 print(pipe_target("의사들은 돈만 아는 사람들이다.")) #예시문장
 
 # 의사 감정 분류 모델 
-pipe = pipeline("text-classification", model="JunHyeongdd/doctorsentimentmodel")
-print(pipe("의사들이 너무 이기적이다.")) # 예시문장
+pipe_sentiment = pipeline("text-classification", model="JunHyeongdd/doctorsentimentmodel")
+print(pipe_sentiment("의사들이 너무 이기적이다.")) # 예시문장
 
 
 ### Hugging Face 모델
-- **의사 감성 분류 모델:** [[JunHyeongdd/doctor_emotion_ko](https://huggingface.co/JunHyeongdd/doctorsentimentmodel)]
 - **의사 대상 분류 모델:** [[JunHyeongdd/doctor_target_ko](https://huggingface.co/JunHyeongdd/doctortargetmodel)]
+- **의사 감성 분류 모델:** [[JunHyeongdd/doctor_emotion_ko](https://huggingface.co/JunHyeongdd/doctorsentimentmodel)]
