@@ -8,7 +8,7 @@
 
 ---
 
-## 1. Dataset Descriptionㅍ
+## 1. Dataset Description
 
 | 컬럼명 | 설명 |
 |--------|------|
@@ -26,6 +26,7 @@
 
 최종적으로 **총 3,036건의 댓글 데이터**를 확보하여 KcBERT-base 모델을 파인튜닝했습니다.
 
+
 **데이터 예시**
 
 | comments | target | label |
@@ -35,6 +36,7 @@
 | "의사를 존중하는 이유는 성공한 엘리트집단이라서가 아니라 직업윤리상 헌신이 기저에 깔려있기 때문이다. 이걸 내팽겨버린 지금 니들편은 니들밖에 없다 | 1 | 1 |
 | 의사들만 따로 무인도에 모여 살게하면 좋을듯. 남들은 어떻게되든 자기 배만 까~득~ 채우려는 심보. | 1 | 2 |
 
+---
 
 ## 2. Model Pipeline
 
@@ -90,12 +92,12 @@ from transformers import pipeline
 # 1️⃣ 의사 대상 분류 모델 (Target Classification)
 pipe_target = pipeline("text-classification", model="JunHyeongdd/doctortargetmodel")
 print(pipe_target("의사들은 돈만 아는 사람들이다."))
+
 # 2️⃣ 의사 감성 분류 모델 (Emotion Classification)
 pipe_sentiment = pipeline_sentiment("text-classification", model="JunHyeongdd/doctorsentimentmodel")
 print(pipe("의사들이 너무 이기적이다."))
 
-
-
+---
 
 ### Hugging Face 모델
 - **의사 대상 분류 모델:** [[JunHyeongdd/doctor_target_ko](https://huggingface.co/JunHyeongdd/doctortargetmodel)]
