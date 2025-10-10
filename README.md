@@ -8,7 +8,7 @@
 
 ---
 
-## 1. Dataset Description
+## 1. Dataset Descriptionㅍ
 
 | 컬럼명 | 설명 |
 |--------|------|
@@ -26,16 +26,75 @@
 
 최종적으로 **총 3,036건의 댓글 데이터**를 확보하여 KcBERT-base 모델을 파인튜닝했습니다.
 
-
 **데이터 예시**
 
 | comments | target | label |
 |-----------|---------|--------|
 | 국민이 위협을 느끼는 것은 의사들이 아니고 윤통이다. | 0 |  |
 | 파업 지지 합니다! 이 정책 통과되면 앞으로 국민들 의료비 폭등합니다ㅠㅠ 미국처럼 맹장수술 하나 받는데 몇백만원 내야돼요 제발 다들 정신 좀 차리세요 국민 여러분들ㅜㅠㅠ | 1 | 0 |
-| "의사를 존중하는 이유는 성공한 엘리트집단이라서가 아니라 직업윤리상 헌신이 기저에 깔려있기 때문이다. 이걸 내팽겨버린 지금 니들편은 니들밖에 없다 | 1 | 1 |성 분류 모델 
-pipe_sentiment = pipeline("text-classification", model="JunHyeongdd/doctorsentimentmodel")
-print(pipe_sentiment("의사들이 너무 이기적이다.")) # 예시문장
+| "의사를 존중하는 이유는 성공한 엘리트집단이라서가 아니라 직업윤리상 헌신이 기저에 깔려있기 때문이다. 이걸 내팽겨버린 지금 니들편은 니들밖에 없다 | 1 | 1 |
+| 의사들만 따로 무인도에 모여 살게하면 좋을듯. 남들은 어떻게되든 자기 배만 까~득~ 채우려는 심보. | 1 | 2 |
+
+
+## 2. Model Pipeline
+
+1️ **의사 대상 분류 모델 (Target Classification)**  
+   → 해당 댓글이 ‘의사’를 직접적으로 표적으로 하는지 판단  
+
+2️⃣ **의사 감성 분류 모델 (Emotion Classification)**  
+   → 타겟=1인 댓글 중에서 감정(중립·분노·혐오)을 분류  
+
+---
+
+## 3. Model Performance
+
+### 의사 대상 분류 모델 (Target Classification)
+
+| 라벨 | 정밀도 | 재현율 | F1-점수 |
+|------|--------|--------|--------|
+| 비의사 | 0.88 | 0.88 | 0.88 |
+| 의사 | 0.92 | 0.92 | 0.92 |
+| **정확도(Accuracy)** |  |  | **0.90** |
+
+---
+
+### 의사 감성 분류 모델 (Emotion Classification)
+
+| 라벨 | 정밀도 | 재현율 | F1-점수 |
+|------|--------|--------|--------|
+| 중립 | 0.89 | 0.90 | 0.90 |
+| 분노 | 0.90 | 0.86 | 0.88 |
+| 혐오 | 0.87 | 0.89 | 0.88 |
+| **정확도(Accuracy)** |  |  | **0.88** |
+
+---
+
+## 4. 설치 및 실행 방법
+
+### 환경 설정
+Python 3.9 이상 환경을 권장합니다.  
+(가상환경 사용 시 아래 명령으로 활성화하세요)
+
+```bash
+# (선택) 가상환경 생성
+python -m venv venv
+source venv/bin/activate  # Mac/Linux
+venv\Scripts\activate     # Windows
+
+# 필수 패키지 설치
+pip install torch transformers
+
+#라이브러리 호출 
+from transformers import pipeline
+
+# 1️⃣ 의사 대상 분류 모델 (Target Classification)
+pipe_target = pipeline("text-classification", model="JunHyeongdd/doctortargetmodel")
+print(pipe_target("의사들은 돈만 아는 사람들이다."))
+# 2️⃣ 의사 감성 분류 모델 (Emotion Classification)
+pipe_sentiment = pipeline_sentiment("text-classification", model="JunHyeongdd/doctorsentimentmodel")
+print(pipe("의사들이 너무 이기적이다."))
+
+
 
 
 ### Hugging Face 모델
